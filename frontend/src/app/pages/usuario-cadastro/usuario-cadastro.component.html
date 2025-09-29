@@ -1,0 +1,32 @@
+<section class="auth-shell">
+  <div class="card">
+    <header class="card__header">
+      <h1>Cadastro de Usuário</h1>
+      <p>Informe seus dados para criar um novo usuário.</p>
+    </header>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form" novalidate>
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" formControlName="nome" placeholder="Seu nome completo" />
+        <small class="error" *ngIf="form.controls.nome.touched && form.controls.nome.invalid">
+          Informe um nome válido (mínimo de 2 caracteres).
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="exemplo@dominio.com" />
+        <small class="error" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+          Informe um email válido.
+        </small>
+      </div>
+
+      <button class="btn" type="submit" [disabled]="loading">
+        {{ loading ? 'Enviando...' : 'Cadastrar' }}
+      </button>
+
+      <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
+    </form>
+  </div>
+</section>

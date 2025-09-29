@@ -7,6 +7,7 @@ API REST simples para cadastro e gerenciamento de usuários, construída com Spr
   <img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-3.5.6-6DB33F?logo=springboot&logoColor=white" />
   <img alt="Maven" src="https://img.shields.io/badge/Maven-Build-C71A36?logo=apachemaven&logoColor=white" />
   <img alt="H2" src="https://img.shields.io/badge/DB-H2-1C6BA0?logo=databricks&logoColor=white" />
+  <img alt="Angular" src="https://img.shields.io/badge/Angular-20-E23237?logo=angular&logoColor=white" />
 </p>
 
 —
@@ -20,6 +21,7 @@ API REST simples para cadastro e gerenciamento de usuários, construída com Spr
 - Lombok
 - Maven
 - Java 25 (conforme `pom.xml`)
+- Angular 20 (pasta `frontend/`)
 
 ## 🚀 Como executar
 
@@ -29,7 +31,7 @@ Pré-requisitos:
 
 Passos:
 1. Clonar/baixar o projeto.
-2. Na raiz do projeto, executar:
+2. Na raiz do projeto, executar o backend:
    - Windows:
      ```powershell
      .\mvnw.cmd spring-boot:run
@@ -40,6 +42,45 @@ Passos:
      ```
 3. A API subirá por padrão na porta definida em `src/main/resources/application.properties`:
    - `server.port=8081`
+
+### 🖥️ Frontend Angular (pasta `frontend/`)
+
+Pré-requisitos:
+- Node.js LTS (>= 20.19) ou Node 22.12+
+- NPM (instalado com Node)
+
+Comandos principais (executar dentro de `frontend/`):
+```bash
+npm install
+npm start          # inicia em http://localhost:4200 com proxy
+npm start -- --port 4201  # porta alternativa
+```
+
+Proxy de desenvolvimento: `frontend/proxy.conf.json`
+```json
+{
+  "/usuario": {
+    "target": "http://localhost:8081",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
+```
+Isso permite chamar a API via `/usuario` sem CORS.
+
+Rota principal do app:
+- `http://localhost:4200/cadastro`
+
+Páginas e serviços:
+- Componente: `frontend/src/app/pages/usuario-cadastro/usuario-cadastro.component.ts`
+- Serviço: `frontend/src/app/services/usuario.service.ts`
+- Modelo: `frontend/src/app/models/usuario.ts`
+
+Paleta de cores utilizada (global em `frontend/src/styles.scss`):
+- `#0D0D0D` (fundo escuro)
+- `#8C8C8C` (cinza)
+- `#F2F2F2` (texto claro)
+- `#B7BF7A` (accent)
 
 Para gerar o jar:
 ```bash
@@ -173,6 +214,25 @@ Base path do controller: `/usuario`
 │   │       └── application.properties
 │   └── test
 │       └── java
+├── frontend
+│   ├── package.json
+│   ├── proxy.conf.json
+│   └── src
+│       ├── index.html
+│       ├── styles.scss
+│       └── app
+│           ├── app.html
+│           ├── app.config.ts
+│           ├── app.routes.ts
+│           ├── models
+│           │   └── usuario.ts
+│           ├── services
+│           │   └── usuario.service.ts
+│           └── pages
+│               └── usuario-cadastro
+│                   ├── usuario-cadastro.component.ts
+│                   ├── usuario-cadastro.component.html
+│                   └── usuario-cadastro.component.scss
 └── README.md
 ```
 

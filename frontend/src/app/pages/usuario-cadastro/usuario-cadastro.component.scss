@@ -1,0 +1,105 @@
+/* Shell centers content vertically */
+.auth-shell {
+  min-height: calc(100dvh - 120px);
+  display: grid;
+  place-items: center;
+}
+
+/* Glass card */
+.card {
+  width: min(560px, 92vw);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.card__header {
+  margin-bottom: 1rem;
+}
+
+.card__header h1 {
+  margin: 0 0 .25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card__header p {
+  margin: 0;
+  opacity: .9;
+}
+
+/* Form */
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: .4rem;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"] {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+input:focus {
+  border-color: #9fa8da;
+  box-shadow: 0 0 0 4px rgba(159, 168, 218, 0.25);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.btn {
+  background: linear-gradient(135deg, #5c6bc0, #3f51b5);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .06s ease, filter .2s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ffb4b4;
+  font-size: 0.85rem;
+}
+
+.feedback {
+  text-align: center;
+}
